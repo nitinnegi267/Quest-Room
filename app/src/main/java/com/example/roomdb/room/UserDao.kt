@@ -1,5 +1,6 @@
 package com.example.roomdb.room
 
+import android.database.Cursor
 import androidx.room.Dao
 import androidx.room.Delete
 import androidx.room.Query
@@ -12,8 +13,12 @@ interface UserDao {
 
     // Add or update the existing user data
     @Upsert
-     fun insert(user: User)
+    fun insert(user: User) : Long
 
     @Delete
-     fun delete(user: User)
+    fun delete(user: User)
+
+
+    @Query(value = "SELECT * FROM user ")
+    fun findAll(): Cursor
 }

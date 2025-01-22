@@ -2,6 +2,13 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <permission
+        android:name="com.example.roomdb.DOMAIN_READ"
+        android:protectionLevel="normal" />
+    <permission
+        android:name="com.example.roomdb.DOMAIN_WRITE"
+        android:protectionLevel="normal" />
+
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -23,6 +30,18 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <provider
+            android:name="com.example.roomdb.MyContentProvider"
+            android:authorities="com.example.roomdb"
+            android:enabled="true"
+            android:exported="true"
+            android:readPermission="com.example.roomdb.DOMAIN_READ"
+            android:writePermission="com.example.roomdb.DOMAIN_WRITE" />
     </application>
+
+    <queries>
+        <package android:name="com.a52.datafeeder01" />
+    </queries>
 
 </manifest>
